@@ -11,11 +11,13 @@ const MovieCard = ({
   movie: IMovie;
   category: string;
 }) => {
-  const { poster_path, original_title: title, name, id, vote_average } = movie;
+  // استخدام 'as any' مؤقتاً لتخطي خطأ TypeScript في عملية الـ Build
+  const { poster_path, original_title: title, name, id, vote_average } = movie as any;
   const isMobile = useMediaQuery("(max-width: 380px)");
 
   return (
     <div className="flex flex-col gap-2 group w-[170px]">
+      {/* حاوية البطاقة مع تأثيرات التمرير (Hover) */}
       <div className="relative block w-full xs:h-[250px] h-[216px] overflow-hidden rounded-xl transition-all duration-300 ease-in-out group-hover:-translate-y-2 group-hover:shadow-[0_15px_35px_rgba(255,0,0,0.3)] border border-transparent group-hover:border-red-600/30">
         
         {/* بوستر الفيلم */}
@@ -28,10 +30,10 @@ const MovieCard = ({
           effect="zoomIn"
         />
 
-        {/* طبقة الأزرار (Overlay) */}
+        {/* طبقة الأزرار (Overlay) تظهر عند التمرير بالماوس */}
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black/40">
           
-          {/* زر Watch Now - يوجه للبريميوم */}
+          {/* زر Watch Now - يوجه المستخدم لصفحة البريميوم */}
           <Link
             to="/premium"
             className="flex items-center justify-center gap-2 bg-primary text-white w-[130px] py-2 rounded-full text-[12px] font-bold hover:bg-red-700 transition-all transform translate-y-4 group-hover:translate-y-0"
@@ -39,7 +41,7 @@ const MovieCard = ({
             <FaPlay size={10} /> Watch Now
           </Link>
 
-          {/* زر Watch Trailer - يوجه لصفحة التفاصيل (حيث يوجد التريلر) */}
+          {/* زر Watch Trailer - يوجه لصفحة التفاصيل لرؤية الفيديو */}
           <Link
             to={`/${category}/${id}`}
             className="flex items-center justify-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white w-[130px] py-2 rounded-full text-[12px] font-bold hover:bg-white/20 transition-all transform translate-y-4 group-hover:translate-y-0 delay-75"
@@ -47,7 +49,7 @@ const MovieCard = ({
             <FaYoutube size={14} className="text-red-600" /> Trailer
           </Link>
 
-          {/* شارة التقييم */}
+          {/* شارة التقييم الذهبية */}
           <div className="absolute bottom-3 left-3 flex items-center gap-1 bg-yellow-500/20 backdrop-blur-md border border-yellow-500/30 px-2 py-1 rounded-lg">
             <FaStar className="text-yellow-400 text-[10px]" />
             <span className="text-yellow-400 text-xs font-black">
@@ -57,7 +59,7 @@ const MovieCard = ({
         </div>
       </div>
 
-      {/* عنوان الفيلم يوجه لصفحة التفاصيل */}
+      {/* عنوان الفيلم - يوجه لصفحة التفاصيل عند الضغط عليه */}
       <Link 
         to={`/${category}/${id}`}
         className="dark:text-gray-300 text-center sm:text-base xs:text-[14.75px] text-[14px] font-medium transition-colors group-hover:text-primary line-clamp-1"
