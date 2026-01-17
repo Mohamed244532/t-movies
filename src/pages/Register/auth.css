@@ -1,0 +1,184 @@
+/* auth.css - Full Styles */
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  position: relative;
+  font-family: 'Arial', sans-serif;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* الطبقة السوداء الشفافة فوق خلفية الصفحة */
+.auth-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65); /* زيادة التعتيم قليلاً للوضوح */
+  z-index: 1;
+}
+
+.auth-box {
+  position: relative;
+  z-index: 2; /* لتكون فوق الـ overlay */
+  background: rgba(0, 0, 0, 0.75); /* خلفية الصندوق غامقة وشفافة */
+  padding: 60px 40px; /* زيادة المساحة الداخلية */
+  border-radius: 8px;
+  width: 100%;
+  max-width: 450px; /* عرض ثابت للصندوق */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  color: #fff;
+}
+
+.auth-box h1 {
+  margin-bottom: 25px;
+  font-size: 32px;
+  font-weight: 700;
+  text-align: left; /* جعل العنوان في اليسار مثل نيتفليكس */
+}
+
+/* تنسيق حقول الإدخال */
+.auth-box input {
+  width: 100%;
+  padding: 14px 15px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  background: #333;
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+  transition: background 0.2s;
+}
+
+.auth-box input:focus {
+  background: #454545;
+}
+
+.auth-box input::placeholder {
+  color: #8c8c8c;
+}
+
+/* === تنسيق حاوية الباسورد وأيقونة العين === */
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper input {
+  padding-right: 50px !important; /* مسافة للأيقونة */
+}
+
+.eye-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #8c8c8c;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  transition: color 0.3s ease;
+  z-index: 10;
+  padding: 0;
+}
+
+.eye-icon:hover {
+  color: #fff;
+}
+
+/* زر تسجيل الدخول / التسجيل */
+.auth-btn {
+  width: 100%;
+  padding: 15px;
+  margin-top: 25px;
+  background: #e50914; /* أحمر نيتفليكس */
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.1s;
+}
+
+.auth-btn:active {
+  transform: scale(0.98);
+}
+
+.auth-btn:hover {
+  background: #f6121d;
+}
+
+/* الخيارات السفلية (تذكرني، المساعدة) */
+.auth-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  font-size: 13px;
+  color: #b3b3b3;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+  cursor: pointer;
+}
+
+.need-help {
+  cursor: pointer;
+}
+
+.need-help:hover {
+  text-decoration: underline;
+}
+
+/* التبديل بين Login و Register */
+.auth-switch {
+  font-size: 15px;
+  margin-top: 30px;
+  color: #737373;
+  text-align: left;
+}
+
+.auth-switch a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 5px;
+}
+
+.auth-switch a:hover {
+  text-decoration: underline;
+}
+
+/* تحسين الاستجابة للموبايل */
+@media (max-width: 500px) {
+  .auth-box {
+    padding: 40px 20px;
+    background: rgba(0, 0, 0, 1); /* جعلها سوداء بالكامل على الموبايل */
+  }
+  
+  .auth-container {
+    background-image: none !important;
+    background-color: #000;
+  }
+}
